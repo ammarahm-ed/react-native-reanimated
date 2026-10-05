@@ -1,4 +1,5 @@
 #include <reanimated/CSS/common/transforms/vectors.h>
+#include <cmath>
 
 namespace reanimated::css {
 
