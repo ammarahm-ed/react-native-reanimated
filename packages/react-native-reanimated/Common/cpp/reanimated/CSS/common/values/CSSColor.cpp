@@ -4,6 +4,7 @@
 
 #include <utility>
 
+#include <cmath>
 #include <string>
 
 namespace reanimated::css {

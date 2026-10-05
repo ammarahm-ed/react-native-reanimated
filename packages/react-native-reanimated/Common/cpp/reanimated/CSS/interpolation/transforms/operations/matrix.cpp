@@ -3,6 +3,7 @@
 
 #include <deque>
 #include <memory>
+#include <stdexcept>
 #include <utility>
 
 namespace reanimated::css {

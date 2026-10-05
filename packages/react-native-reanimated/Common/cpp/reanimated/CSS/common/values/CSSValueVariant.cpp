@@ -14,6 +14,7 @@
 #include <reanimated/CSS/svg/values/SVGStrokeDashArray.h>
 #include <reanimated/Compat/WorkletsApi.h>
 
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>

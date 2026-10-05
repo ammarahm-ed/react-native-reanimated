@@ -1,6 +1,7 @@
 #include <reanimated/CSS/configs/CSSAnimationConfig.h>
 
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <unordered_map>
 #include <utility>

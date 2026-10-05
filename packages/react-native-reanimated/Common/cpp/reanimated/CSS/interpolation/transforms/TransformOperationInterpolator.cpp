@@ -7,6 +7,7 @@
 
 #include <cmath>
 #include <limits>
+#include <stdexcept>
 #include <utility>
 
 namespace reanimated::css {

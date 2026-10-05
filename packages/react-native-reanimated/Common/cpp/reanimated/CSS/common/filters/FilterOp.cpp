@@ -1,6 +1,7 @@
 #include <reanimated/CSS/common/filters/FilterOp.h>
 
 #include <array>
+#include <stdexcept>
 #include <string>
 #include <unordered_map>
 

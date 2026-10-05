@@ -1,6 +1,8 @@
 #include <reanimated/CSS/common/transforms/TransformMatrix3D.h>
 #include <reanimated/CSS/interpolation/transforms/TransformOperation.h>
 
+#include <cmath>
+#include <stdexcept>
 #include <string>
 
 namespace reanimated::css {

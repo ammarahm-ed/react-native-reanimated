@@ -2,6 +2,7 @@
 #include <reanimated/Compat/WorkletsApi.h>
 
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <variant>

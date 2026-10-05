@@ -1,6 +1,7 @@
 #include <reanimated/CSS/common/transforms/TransformMatrix2D.h>
 
 #include <cmath>
+#include <stdexcept>
 
 namespace reanimated::css {
 

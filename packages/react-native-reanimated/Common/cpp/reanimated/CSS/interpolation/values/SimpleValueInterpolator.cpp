@@ -18,6 +18,7 @@
 #include <reanimated/CSS/svg/values/SVGStrokeDashArray.h>
 
 #include <memory>
+#include <stdexcept>
 
 namespace reanimated::css {
 

@@ -30,6 +30,7 @@
 #include <algorithm>
 #include <functional>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -71,6 +72,10 @@ constexpr bool shouldUseSynchronousUpdatesInPerformOperations() {
 #elif __APPLE__
 constexpr bool shouldUseSynchronousUpdatesInPerformOperations() {
   return StaticFeatureFlags::getFlag("IOS_SYNCHRONOUSLY_UPDATE_UI_PROPS");
+}
+#elif defined(__linux__)
+constexpr bool shouldUseSynchronousUpdatesInPerformOperations() {
+  return StaticFeatureFlags::getFlag("LINUX_SYNCHRONOUSLY_UPDATE_UI_PROPS");
 }
 #else
 constexpr bool shouldUseSynchronousUpdatesInPerformOperations() {
@@ -1089,7 +1094,7 @@ void ReanimatedModuleProxy::writeSynchronousPropsToViews(const UpdatesBatch &syn
   }
 #endif // ANDROID
 
-#if __APPLE__
+#if defined(__APPLE__) || defined(__linux__)
   for (const auto &[shadowNodeFamily, props] : synchronousUpdatesBatch) {
     synchronouslyUpdateUIPropsFunction_(shadowNodeFamily->getTag(), props);
   }

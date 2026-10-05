@@ -4,6 +4,7 @@
 #include <react/debug/react_native_assert.h>
 
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <unordered_map>
 #include <utility>

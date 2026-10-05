@@ -1,6 +1,7 @@
 #include <reanimated/CSS/common/values/CSSLength.h>
 #include <reanimated/CSS/misc/ViewStylesRepository.h>
 
+#include <stdexcept>
 #include <string>
 
 namespace reanimated::css {

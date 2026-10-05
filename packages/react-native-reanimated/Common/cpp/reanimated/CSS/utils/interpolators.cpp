@@ -1,6 +1,7 @@
 #include <reanimated/CSS/utils/interpolators.h>
 
 #include <memory>
+#include <stdexcept>
 #include <string>
 
 namespace reanimated::css {

@@ -2,6 +2,7 @@
 #include <reanimated/CSS/svg/values/SVGStops.h>
 
 #include <algorithm>
+#include <cmath>
 #include <cstddef>
 #include <functional>
 #include <optional>
