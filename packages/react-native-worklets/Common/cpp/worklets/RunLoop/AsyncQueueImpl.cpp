@@ -4,6 +4,10 @@
 #include <fbjni/fbjni.h>
 #endif // ANDROID
 
+#if defined(__APPLE__) || defined(__linux__)
+#include <pthread.h>
+#endif
+
 #include <memory>
 #include <queue>
 #include <string>
@@ -69,7 +73,11 @@ AsyncQueueImpl::AsyncQueueImpl(const std::string &name) : state_(std::make_share
     pthread_setname_np(pthread_self(), name.c_str());
     jni::ThreadScope::WithClassLoader([state]() { AsyncQueueImpl::runLoop(state); });
 #else
+#if defined(__APPLE__)
     pthread_setname_np(name.c_str());
+#elif defined(__linux__)
+    pthread_setname_np(pthread_self(), name.substr(0, 15).c_str());
+#endif
     AsyncQueueImpl::runLoop(state);
 #endif // ANDROID
   });

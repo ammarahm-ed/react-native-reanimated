@@ -2,6 +2,7 @@
 
 #include <react/debug/react_native_assert.h>
 
+#include <iterator>
 #include <memory>
 #include <sstream>
 #include <string>
