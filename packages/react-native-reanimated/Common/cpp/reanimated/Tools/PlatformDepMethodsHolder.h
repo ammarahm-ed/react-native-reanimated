@@ -34,7 +34,7 @@ using MeasureFunction = std::function<jsi::Value(jsi::Runtime &rt, const jsi::Va
 using RequestRenderFunction = std::function<void(std::function<void(const double)>)>;
 #ifdef ANDROID
 using SynchronouslyUpdateUIPropsFunction = std::function<void(const std::vector<int> &, const std::vector<double> &)>;
-#elif defined(__APPLE__) || defined(__linux__)
+#else
 using SynchronouslyUpdateUIPropsFunction = std::function<void(const int, const folly::dynamic &)>;
 #endif // ANDROID
 using PreserveMountedTagsFunction = std::function<std::optional<std::unique_ptr<int[]>>(std::vector<int> &)>;

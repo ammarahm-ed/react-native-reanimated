@@ -15,11 +15,18 @@ class TransformOperationInterpolator : public StyleOperationInterpolator {
  public:
   using StyleOperationInterpolator::StyleOperationInterpolator;
 
+  // Defined in the class body: MSVC rejects an out-of-line definition of the
+  // primary template member next to the constrained partial specialization
+  // below (C3855).
   std::unique_ptr<StyleOperation> interpolate(
       double progress,
       const std::shared_ptr<StyleOperation> &from,
       const std::shared_ptr<StyleOperation> &to,
-      const StyleOperationsInterpolationContext &context) const override;
+      const StyleOperationsInterpolationContext & /* context */) const override {
+    const auto &fromOp = *std::static_pointer_cast<TOperation>(from);
+    const auto &toOp = *std::static_pointer_cast<TOperation>(to);
+    return std::make_unique<TOperation>(fromOp.value.interpolate(progress, toOp.value));
+  }
 };
 
 // Specialization for PerspectiveOperation

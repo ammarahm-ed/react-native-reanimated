@@ -12,18 +12,6 @@
 
 namespace reanimated::css {
 
-// Base implementation for simple operations
-template <typename TOperation>
-std::unique_ptr<StyleOperation> TransformOperationInterpolator<TOperation>::interpolate(
-    double progress,
-    const std::shared_ptr<StyleOperation> &from,
-    const std::shared_ptr<StyleOperation> &to,
-    const StyleOperationsInterpolationContext & /* context */) const {
-  const auto &fromOp = *std::static_pointer_cast<TOperation>(from);
-  const auto &toOp = *std::static_pointer_cast<TOperation>(to);
-  return std::make_unique<TOperation>(fromOp.value.interpolate(progress, toOp.value));
-}
-
 // Specialization for PerspectiveOperation
 TransformOperationInterpolator<PerspectiveOperation>::TransformOperationInterpolator(
     const std::shared_ptr<PerspectiveOperation> &defaultOperation)

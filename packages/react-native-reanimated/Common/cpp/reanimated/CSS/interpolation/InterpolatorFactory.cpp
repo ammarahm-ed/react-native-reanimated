@@ -27,7 +27,7 @@ class RecordInterpolatorFactory : public PropertyInterpolatorFactory {
   // Helper private type just for a default value
   struct EmptyObjectValue : public CSSValue {
     folly::dynamic toDynamic() const override {
-      return folly::dynamic::object;
+      return folly::dynamic::object();
     }
 
     std::string toString() const override {
@@ -53,7 +53,7 @@ class ArrayLikeInterpolatorFactory : public PropertyInterpolatorFactory {
   // Helper private type just for a default value
   struct EmptyArrayValue : public CSSValue {
     folly::dynamic toDynamic() const override {
-      return folly::dynamic::array;
+      return folly::dynamic::array();
     }
 
     std::string toString() const override {

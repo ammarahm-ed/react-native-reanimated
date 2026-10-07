@@ -1094,11 +1094,11 @@ void ReanimatedModuleProxy::writeSynchronousPropsToViews(const UpdatesBatch &syn
   }
 #endif // ANDROID
 
-#if defined(__APPLE__) || defined(__linux__)
+#ifndef ANDROID
   for (const auto &[shadowNodeFamily, props] : synchronousUpdatesBatch) {
     synchronouslyUpdateUIPropsFunction_(shadowNodeFamily->getTag(), props);
   }
-#endif // __APPLE__
+#endif // ANDROID
 }
 
 void ReanimatedModuleProxy::requestFlushRegistry() {
