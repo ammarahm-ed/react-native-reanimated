@@ -4,7 +4,9 @@
 
 #include <react/debug/react_native_assert.h>
 
+#ifndef _MSC_VER
 #include <cxxabi.h>
+#endif
 
 #include <atomic>
 #include <cassert>
@@ -50,10 +52,14 @@ class SingleInstanceChecker {
 
 template <class T>
 SingleInstanceChecker<T>::SingleInstanceChecker() {
+#ifdef _MSC_VER
+  std::string className = typeid(T).name();
+#else
   int status = 0;
   char *demangled = __cxxabiv1::__cxa_demangle(typeid(T).name(), nullptr, nullptr, &status);
   std::string className = (status == 0 && demangled != nullptr) ? demangled : typeid(T).name();
   std::free(demangled);
+#endif
 
   // React Native can spawn up to two instances of a Native Module at the same
   // time. This happens during a reload when a new instance of React Native is

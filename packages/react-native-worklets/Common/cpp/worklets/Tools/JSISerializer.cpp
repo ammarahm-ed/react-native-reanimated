@@ -1,6 +1,8 @@
 #include <worklets/Tools/JSISerializer.h>
 
+#ifndef _MSC_VER
 #include <cxxabi.h>
+#endif
 
 #include <algorithm>
 #include <memory>
@@ -117,15 +119,20 @@ std::string JSISerializer::stringifyFunction(const jsi::Function &func) {
 }
 
 std::string JSISerializer::stringifyHostObject(jsi::HostObject &hostObject) {
+#ifdef _MSC_VER
+  const char *hostObjClassName = typeid(hostObject).name();
+#else
   int status = -1;
-  std::unique_ptr<char, decltype(&std::free)> hostObjClassName(
+  std::unique_ptr<char, decltype(&std::free)> demangled(
       abi::__cxa_demangle(typeid(hostObject).name(), nullptr, nullptr, &status), std::free);
   if (status != 0) {
     return "[jsi::HostObject]";
   }
+  const char *hostObjClassName = demangled.get();
+#endif
 
   std::stringstream ss;
-  ss << "[jsi::HostObject(" << hostObjClassName.get() << ")";
+  ss << "[jsi::HostObject(" << hostObjClassName << ")";
 
   auto props = hostObject.getPropertyNames(rt_);
   auto propsCount = props.size();
